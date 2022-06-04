@@ -76,7 +76,7 @@ void FreeBitmaps() {
 void FreeList() {
 	Figure_List::list_iterator iter = figureList->begin();
 	while (iter != figureList->end()) {
-		delete *iter;
+		//delete *iter;
 		iter++;
 	}
 	delete figureList;
@@ -88,6 +88,32 @@ TypeOfTransformation typeTT;
 void SetModifyType(TypeOfTransformation TT);
 
 
+using LoadPlaginFunction = Figure*(*)();//функция "загрузки" плагина (создает объект фигуры)
+std::vector<HINSTANCE> plagins;
+
+void LoadPlagins() {
+	HINSTANCE lib = LoadLibrary(L"../Plagins/Dll1.dll");
+	if (lib == NULL) {
+		MessageBox(NULL, L"Не удалось загрузить плагин",L"Ooops",MB_OK|MB_ICONERROR);
+		exit(-1);
+	}
+	plagins.push_back(lib);
+	LoadPlaginFunction func = (LoadPlaginFunction)GetProcAddress(lib, "CreateFigureObject");
+	if (func == NULL) {
+		MessageBox(NULL, L"Ошибка при загрузке плагина", L"Ooops", MB_OK | MB_ICONERROR);
+		exit(-1);
+	}
+	figureFactory.RegisterNewFigureClass(func());
+	
+}
+
+void FreePlaginResources() {
+	for (auto& lib : plagins) {
+		FreeLibrary(lib);
+	}
+}
+
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lcmdLine, int nCmdShow) {
 	//регистрация всех доступных классов фигур
 	figureFactory.RegisterNewFigureClass(new Ellipse_Figure());
@@ -96,6 +122,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lcmdLine,
 	figureFactory.RegisterNewFigureClass(new Polygon_Figure());
 	figureFactory.RegisterNewFigureClass(new Polyline_Figure());
 	figureFactory.RegisterNewFigureClass(new WavyLine());
+	//загрузка плагинов
+	LoadPlagins();
 
 	InitWindowFramework();
 	AddFontFamily(L"Comfortaa-Regular.ttf");
@@ -109,6 +137,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lcmdLine,
 		TranslateMessage(&msg);
 		DispatchMessageW(&msg);
 	}
+	FreePlaginResources();//очистить ресурсы плагинов
 	FreeBitmaps();
 	FreeList();
 	FreeFontResourses();

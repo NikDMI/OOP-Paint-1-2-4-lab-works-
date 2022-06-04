@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Closed_Figure.h"
 
 Closed_Figure::Closed_Figure(){

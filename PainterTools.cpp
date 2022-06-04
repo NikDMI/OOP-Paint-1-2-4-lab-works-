@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "PainterTools.h"
 
 PainterTools::PainterTools(int penW, DWORD penStyle, COLORREF penColor, DWORD brushStyle, COLORREF brushColor) {
