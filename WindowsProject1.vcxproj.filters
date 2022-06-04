@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\FigureClasses">
+      <UniqueIdentifier>{a6560ce6-5a72-42fe-95bb-ff030a885a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\FigureHeaders">
+      <UniqueIdentifier>{1ff177bc-8462-404d-9495-0f5b55b9563f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowFramework.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Circle.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Closed_Figure.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Ellipse.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Figure.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Figure_List.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Open_Figure.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Polygon.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Polyline.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\LB1\WindowsProject1\Rectangle.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="WavyLine.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PainterTools.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WindowsProject1.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Circle.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Closed_Figure.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Ellipse.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Figure.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Figure_List.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Open_Figure.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Polygon.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Polyline.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\LB1\WindowsProject1\Rectangle.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="WavyLine.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="PainterTools.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WindowsProject1.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\LB2\Icons\i1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\LB2\Icons\i1_32b.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\LB2\Icons\i2.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\LB2\Icons\i3.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\LB2\Icons\i3_1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\LB2\Icons\i4.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\LB2\Icons\i5.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,77 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// пСЯЯЙХИ (пНЯЯХЪ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BACK                BITMAP                  "D:\\ацсхп свеаю 2 йспя\\нно\\LB2\\Icons\\i1.bmp"
+
+IDB_NEXT                BITMAP                  "D:\\ацсхп свеаю 2 йспя\\нно\\LB2\\Icons\\i2.bmp"
+
+IDB_ERASER              BITMAP                  "D:\\ацсхп свеаю 2 йспя\\нно\\LB2\\Icons\\i3_1.bmp"
+
+IDB_SAVE                BITMAP                  "D:\\ацсхп свеаю 2 йспя\\нно\\LB2\\Icons\\i4.bmp"
+
+IDB_CLEAN               BITMAP                  "D:\\ацсхп свеаю 2 йспя\\нно\\LB2\\Icons\\i5.bmp"
+
+#endif    // пСЯЯЙХИ (пНЯЯХЪ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
