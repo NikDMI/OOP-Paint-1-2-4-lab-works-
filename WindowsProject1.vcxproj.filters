@@ -33,37 +33,40 @@
     <ClInclude Include="resource.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Circle.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Closed_Figure.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Ellipse.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Figure.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Figure_List.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Open_Figure.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Polygon.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Polyline.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Rectangle.h">
-      <Filter>Файлы заголовков\FigureHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="WavyLine.h">
       <Filter>Файлы заголовков\FigureHeaders</Filter>
     </ClInclude>
     <ClInclude Include="PainterTools.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="FigureFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Closed_Figure.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Open_Figure.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Polyline.h">
+      <Filter>Файлы заголовков\FigureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_List.h">
       <Filter>Файлы заголовков\FigureHeaders</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,37 +74,37 @@
     <ClCompile Include="WindowsProject1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Circle.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Closed_Figure.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Ellipse.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Figure.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Figure_List.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Open_Figure.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Polygon.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Polyline.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Rectangle.cpp">
-      <Filter>Исходные файлы\FigureClasses</Filter>
-    </ClCompile>
     <ClCompile Include="WavyLine.cpp">
       <Filter>Исходные файлы\FigureClasses</Filter>
     </ClCompile>
     <ClCompile Include="PainterTools.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Closed_Figure.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellipse.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Open_Figure.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Polyline.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Исходные файлы\FigureClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_List.cpp">
       <Filter>Исходные файлы\FigureClasses</Filter>
     </ClCompile>
   </ItemGroup>

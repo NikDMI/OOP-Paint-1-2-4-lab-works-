@@ -7,12 +7,12 @@
 
 #pragma comment(lib,"StaticLib1.lib")
 
-#include "..\..\LB1\WindowsProject1\Ellipse.h"
-#include "..\..\LB1\WindowsProject1\Circle.h"
-#include "..\..\LB1\WindowsProject1\Figure_List.h"
-#include "..\..\LB1\WindowsProject1\Polygon.h"
-#include "..\..\LB1\WindowsProject1\Rectangle.h"
-#include "..\..\LB1\WindowsProject1\Polyline.h"
+#include "Ellipse.h"
+#include "Circle.h"
+#include "Figure_List.h"
+#include "Polygon.h"
+#include "Rectangle.h"
+#include "Polyline.h"
 #include "WavyLine.h"
 #include "PainterTools.h"
 

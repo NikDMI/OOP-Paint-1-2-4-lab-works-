@@ -139,33 +139,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\LB1\WindowsProject1\Circle.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Closed_Figure.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Ellipse.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Figure.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Figure_List.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Open_Figure.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Polygon.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Polyline.h" />
-    <ClInclude Include="..\..\LB1\WindowsProject1\Rectangle.h" />
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="Closed_Figure.h" />
+    <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="Figure.h" />
+    <ClInclude Include="FigureFactory.h" />
+    <ClInclude Include="Figure_List.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Open_Figure.h" />
     <ClInclude Include="PainterTools.h" />
+    <ClInclude Include="Polygon.h" />
+    <ClInclude Include="Polyline.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WavyLine.h" />
     <ClInclude Include="WindowFramework.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\LB1\WindowsProject1\Circle.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Closed_Figure.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Ellipse.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Figure.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Figure_List.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Open_Figure.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Polygon.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Polyline.cpp" />
-    <ClCompile Include="..\..\LB1\WindowsProject1\Rectangle.cpp" />
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Closed_Figure.cpp" />
+    <ClCompile Include="Ellipse.cpp" />
+    <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Figure_List.cpp" />
+    <ClCompile Include="Open_Figure.cpp" />
     <ClCompile Include="PainterTools.cpp" />
+    <ClCompile Include="Polygon.cpp" />
+    <ClCompile Include="Polyline.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="WavyLine.cpp" />
     <ClCompile Include="WindowsProject1.cpp" />
   </ItemGroup>
