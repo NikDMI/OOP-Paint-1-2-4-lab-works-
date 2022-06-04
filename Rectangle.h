@@ -13,5 +13,6 @@ public:
 	//void MouseMove(POINT p);//передвижение мыши по холсту
 	void Draw(HDC hdc);
 	Figure* CreateFigureObject();
+	virtual DrawBtnFunction GetBtnPainter();
 
 };

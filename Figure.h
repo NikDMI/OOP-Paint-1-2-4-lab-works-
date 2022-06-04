@@ -8,6 +8,7 @@
 
 using namespace std;
 
+using DrawBtnFunction = void(*)(HDC, RECT);//функция для рисования кнопки
 
 class Figure {//главный класс геометрических фигур
 protected:
@@ -26,4 +27,6 @@ public:
 	virtual void SetScaledRect(RECT& r)=0;//установка своего прямоугольника(при трансформировании)
 
 	virtual Figure* CreateFigureObject()=0;//создание соответствующего класса
+	//методы для графического интерфейса
+	virtual DrawBtnFunction GetBtnPainter() { return nullptr; }//получения функции-художника для кнопки фигуры
 };

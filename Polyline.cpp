@@ -65,3 +65,16 @@ Figure* Polyline_Figure::CreateFigureObject() {
 	return new Polyline_Figure();
 }
 
+
+void DrawButton_Line(HDC hdc, RECT r) {//рисование кнопки линия
+	HPEN pen = CreatePen(PS_SOLID, 3, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	MoveToEx(hdc, 8, 21, NULL);
+	LineTo(hdc, 21, 8);
+	DeleteObject(pen);
+}
+
+DrawBtnFunction Polyline_Figure::GetBtnPainter() {
+	return DrawButton_Line;
+}
+

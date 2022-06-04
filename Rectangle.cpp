@@ -31,3 +31,16 @@ void Rectangle_Figure::Draw(HDC hdc) {
 Figure* Rectangle_Figure::CreateFigureObject() {
 	return new Rectangle_Figure();
 }
+
+void DrawButton_Rectangle(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 1, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	HBRUSH br = CreateSolidBrush(RGB(180, 250, 224));
+	SelectObject(hdc, br);
+	Rectangle(hdc, 5, 10, 25, 20);
+	DeleteObject(pen);
+}
+
+DrawBtnFunction Rectangle_Figure::GetBtnPainter() {
+	return DrawButton_Rectangle;
+}

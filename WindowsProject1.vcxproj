@@ -161,6 +161,7 @@
     <ClCompile Include="Closed_Figure.cpp" />
     <ClCompile Include="Ellipse.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="FigureFactory.cpp" />
     <ClCompile Include="Figure_List.cpp" />
     <ClCompile Include="Open_Figure.cpp" />
     <ClCompile Include="PainterTools.cpp" />

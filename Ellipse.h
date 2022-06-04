@@ -7,4 +7,5 @@ public:
 	Ellipse_Figure();
 	void Draw(HDC hdc);
 	Figure* CreateFigureObject();
+	virtual DrawBtnFunction GetBtnPainter();
 };

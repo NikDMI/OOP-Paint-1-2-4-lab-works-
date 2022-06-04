@@ -10,4 +10,5 @@ public:
 	void MouseMove(POINT p);//передвижение мыши по холсту
 	void SetScaledRect(RECT& r);//установка своего прямоугольника
 	Figure* CreateFigureObject();
+	virtual DrawBtnFunction GetBtnPainter();
 };

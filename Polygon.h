@@ -14,5 +14,5 @@ public:
 	//void GetBaseRect(RECT& r);
 	void Draw(HDC hdc);
 	Figure* CreateFigureObject();
-
+	virtual DrawBtnFunction GetBtnPainter();
 };

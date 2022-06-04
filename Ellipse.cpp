@@ -48,3 +48,16 @@ Figure* Ellipse_Figure::CreateFigureObject() {
 
 
 
+void DrawButton_Ellipse(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 1, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	HBRUSH br = CreateSolidBrush(RGB(180, 250, 224));
+	SelectObject(hdc, br);
+	Ellipse(hdc, 5, 8, 25, 22);
+	DeleteObject(pen);
+}
+
+DrawBtnFunction Ellipse_Figure::GetBtnPainter() {
+	return DrawButton_Ellipse;
+}
+

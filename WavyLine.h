@@ -7,5 +7,6 @@ public:
 	int MouseUp(POINT p);// мыши по холсту
 	void MouseMove(POINT p);
 	Figure* CreateFigureObject();
+	virtual DrawBtnFunction GetBtnPainter();
 
 };
