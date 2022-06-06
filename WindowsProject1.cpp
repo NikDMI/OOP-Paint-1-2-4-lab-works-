@@ -91,20 +91,43 @@ void SetModifyType(TypeOfTransformation TT);
 using LoadPlaginFunction = Figure*(*)();//функция "загрузки" плагина (создает объект фигуры)
 std::vector<HINSTANCE> plagins;
 
+const wstring plaginsDir = L"..\\Plagins\\";
 void LoadPlagins() {
-	HINSTANCE lib = LoadLibrary(L"../Plagins/Dll1.dll");
-	if (lib == NULL) {
-		MessageBox(NULL, L"Не удалось загрузить плагин",L"Ooops",MB_OK|MB_ICONERROR);
-		exit(-1);
+	WCHAR buff[256];
+	int pathLen = GetModuleFileName(GetModuleHandle(NULL), buff, 256);//получение пути к исполняемому файлу
+	for (int i = pathLen; i > 0; i--) {
+		if (buff[i] != L'\\') {
+			buff[i] = L'\0';
+		}
+		else break;
 	}
-	plagins.push_back(lib);
-	LoadPlaginFunction func = (LoadPlaginFunction)GetProcAddress(lib, "CreateFigureObject");
-	if (func == NULL) {
-		MessageBox(NULL, L"Ошибка при загрузке плагина", L"Ooops", MB_OK | MB_ICONERROR);
-		exit(-1);
+	wstring dirName = buff + plaginsDir;//директория плагинов
+	wstring dllPath = dirName+L"*.dll";//поиск всех динамических модулей в папке
+	WIN32_FIND_DATA fileData;
+	HANDLE fileSearchHandle = FindFirstFile(&dllPath[0], &fileData);
+	if (fileSearchHandle == INVALID_HANDLE_VALUE) {
+		//MessageBox(NULL, L"Ошибки чтения каталога", L"Ooops", MB_OK | MB_ICONERROR);
+		return;
+		//exit(-1);
 	}
-	figureFactory.RegisterNewFigureClass(func());
-	
+	int nextFile = 1;
+	do {
+		wstring dllFullPath = dirName + fileData.cFileName;
+		HINSTANCE lib = LoadLibrary(&dllFullPath[0]);
+		if (lib == NULL) {
+			MessageBox(NULL, L"Не удалось загрузить плагин", L"Ooops", MB_OK | MB_ICONERROR);
+			exit(-1);
+		}
+		plagins.push_back(lib);
+		LoadPlaginFunction func = (LoadPlaginFunction)GetProcAddress(lib, "CreateFigureObject");
+		if (func == NULL) {
+			MessageBox(NULL, L"Ошибка при загрузке плагина", L"Ooops", MB_OK | MB_ICONERROR);
+			exit(-1);
+		}
+		figureFactory.RegisterNewFigureClass(func());
+		nextFile = FindNextFile(fileSearchHandle, &fileData);
+	} while (nextFile != 0);
+	FindClose(fileSearchHandle);
 }
 
 void FreePlaginResources() {
