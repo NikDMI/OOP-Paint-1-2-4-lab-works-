@@ -7,16 +7,14 @@
 
 #pragma comment(lib,"StaticLib1.lib")
 
-#include "Ellipse.h"
-#include "Circle.h"
-#include "Figure_List.h"
-#include "Polygon.h"
-#include "Rectangle.h"
-#include "Polyline.h"
+#include "..\..\LB1\WindowsProject1\Ellipse.h"
+#include "..\..\LB1\WindowsProject1\Circle.h"
+#include "..\..\LB1\WindowsProject1\Figure_List.h"
+#include "..\..\LB1\WindowsProject1\Polygon.h"
+#include "..\..\LB1\WindowsProject1\Rectangle.h"
+#include "..\..\LB1\WindowsProject1\Polyline.h"
 #include "WavyLine.h"
 #include "PainterTools.h"
-
-#include "FigureFactory.h"
 
 
 
@@ -47,6 +45,23 @@ int penStyle = 0;
 int brushStyle = 0;
 int penWidth = 1;
 
+
+
+
+//enum class FigureButtons {None,Line,Ellipse,Circle,Polygon,Rectangle,Polyline,Wavyline};//варианты на кнопках
+//FigureButtons currentFigureButton = FigureButtons::Wavyline;
+
+
+//Классы экземпляры:
+Ellipse_Figure base_Ellipse;
+Circle base_Circle;
+Rectangle_Figure base_Rectangle;
+Polygon_Figure base_Polygon;
+Polyline_Figure base_Polyline;
+WavyLine base_WavyLine;
+
+Figure* currentFigureButton=nullptr;//текущий выбранный класс-ЭКЗЕМПЛЯР
+
 bool isPressed = false;
 bool isModify = false;//рамочка трансформации
 bool isDraw = false;
@@ -76,7 +91,7 @@ void FreeBitmaps() {
 void FreeList() {
 	Figure_List::list_iterator iter = figureList->begin();
 	while (iter != figureList->end()) {
-		//delete *iter;
+		delete *iter;
 		iter++;
 	}
 	delete figureList;
@@ -88,66 +103,7 @@ TypeOfTransformation typeTT;
 void SetModifyType(TypeOfTransformation TT);
 
 
-using LoadPlaginFunction = Figure*(*)();//функция "загрузки" плагина (создает объект фигуры)
-std::vector<HINSTANCE> plagins;
-
-const wstring plaginsDir = L"..\\Plagins\\";
-void LoadPlagins() {
-	WCHAR buff[256];
-	int pathLen = GetModuleFileName(GetModuleHandle(NULL), buff, 256);//получение пути к исполняемому файлу
-	for (int i = pathLen; i > 0; i--) {
-		if (buff[i] != L'\\') {
-			buff[i] = L'\0';
-		}
-		else break;
-	}
-	wstring dirName = buff + plaginsDir;//директория плагинов
-	wstring dllPath = dirName+L"*.dll";//поиск всех динамических модулей в папке
-	WIN32_FIND_DATA fileData;
-	HANDLE fileSearchHandle = FindFirstFile(&dllPath[0], &fileData);
-	if (fileSearchHandle == INVALID_HANDLE_VALUE) {
-		//MessageBox(NULL, L"Ошибки чтения каталога", L"Ooops", MB_OK | MB_ICONERROR);
-		return;
-		//exit(-1);
-	}
-	int nextFile = 1;
-	do {
-		wstring dllFullPath = dirName + fileData.cFileName;
-		HINSTANCE lib = LoadLibrary(&dllFullPath[0]);
-		if (lib == NULL) {
-			MessageBox(NULL, L"Не удалось загрузить плагин", L"Ooops", MB_OK | MB_ICONERROR);
-			exit(-1);
-		}
-		plagins.push_back(lib);
-		LoadPlaginFunction func = (LoadPlaginFunction)GetProcAddress(lib, "CreateFigureObject");
-		if (func == NULL) {
-			MessageBox(NULL, L"Ошибка при загрузке плагина", L"Ooops", MB_OK | MB_ICONERROR);
-			exit(-1);
-		}
-		figureFactory.RegisterNewFigureClass(func());
-		nextFile = FindNextFile(fileSearchHandle, &fileData);
-	} while (nextFile != 0);
-	FindClose(fileSearchHandle);
-}
-
-void FreePlaginResources() {
-	for (auto& lib : plagins) {
-		FreeLibrary(lib);
-	}
-}
-
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lcmdLine, int nCmdShow) {
-	//регистрация всех доступных классов фигур
-	figureFactory.RegisterNewFigureClass(new Ellipse_Figure());
-	figureFactory.RegisterNewFigureClass(new Circle());
-	figureFactory.RegisterNewFigureClass(new Rectangle_Figure());
-	figureFactory.RegisterNewFigureClass(new Polygon_Figure());
-	figureFactory.RegisterNewFigureClass(new Polyline_Figure());
-	figureFactory.RegisterNewFigureClass(new WavyLine());
-	//загрузка плагинов
-	LoadPlagins();
-
 	InitWindowFramework();
 	AddFontFamily(L"Comfortaa-Regular.ttf");
 	InitPaintBox();
@@ -160,7 +116,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lcmdLine,
 		TranslateMessage(&msg);
 		DispatchMessageW(&msg);
 	}
-	FreePlaginResources();//очистить ресурсы плагинов
 	FreeBitmaps();
 	FreeList();
 	FreeFontResourses();
@@ -179,7 +134,6 @@ const COLORREF ButtonBorderColor2 = RGB(148, 139, 139);
 const COLORREF ButtonBackground1 = RGB(202, 202, 202);//обычный
 const COLORREF ButtonBackground2 = RGB(222, 222, 222);//при наведении
 const COLORREF ButtonBackground3 = RGB(182, 182, 182);//при зажатии
-
 
 
 
@@ -213,7 +167,6 @@ void CustomButton1(Frame* btn) {//создание стиля для кнопк�
 	btn->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonLeave1);
 }
 
-
 void CustomPanel1(WindowClass* panel) {//стиль для панелек в тул баре
 	panel->SetBackgroundColor(PanelBackcolor);
 	panel->SetBorderRadius(20);
@@ -227,7 +180,7 @@ void CustomPanel2(WindowClass* panel) {//стиль для панелек в т�
 void CustomLabel1(LabelClass* label) {
 	label->SetBackgroundColor(PanelBackcolor);
 	label->font->SetFontFamily(L"Comfortaa Regular");
-	label->font->SetFontSize(9);
+	label->font->SetFontSize(10);
 	label->SetTextAlign(TextAlign::Center);
 }
 
@@ -248,6 +201,66 @@ void DrawButton_Submit(HDC hdc, RECT r) {//рисование кнопки по�
 	DeleteObject(pen);
 }
 
+void DrawButton_Line(HDC hdc, RECT r) {//рисование кнопки линия
+	HPEN pen = CreatePen(PS_SOLID, 3, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	MoveToEx(hdc, 8, 21, NULL);
+	LineTo(hdc, 21, 8);
+	DeleteObject(pen);
+}
+
+void DrawButton_WavyLine(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 3, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	vector<POINT> points;POINT p;
+	p = { 8,20 }; points.push_back(p);
+	p = { 24,14 }; points.push_back(p);
+	p = { 10,10 }; points.push_back(p);
+	p = { 23,6 }; points.push_back(p);
+	PolyBezier(hdc, &points[0], points.size());
+	DeleteObject(pen);
+}
+
+void DrawButton_Ellipse(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 1, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	HBRUSH br = CreateSolidBrush(RGB(180, 250, 224));
+	SelectObject(hdc, br);
+	Ellipse(hdc, 5, 8, 25, 22);
+	DeleteObject(pen);
+}
+
+void DrawButton_Circle(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 1, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	HBRUSH br = CreateSolidBrush(RGB(180, 250, 224));
+	SelectObject(hdc, br);
+	Ellipse(hdc, 5, 5, 25, 25);
+	DeleteObject(pen);
+}
+
+void DrawButton_Polygon(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 1, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	HBRUSH br = CreateSolidBrush(RGB(180, 250, 224));
+	SelectObject(hdc, br);
+	POINT p; vector<POINT> points;
+	p = { 5,7 }; points.push_back(p);
+	p = { 22,8 }; points.push_back(p);
+	p = { 15,22 }; points.push_back(p);
+	p = { 12,12 }; points.push_back(p);
+	Polygon(hdc, &points[0], points.size());
+	DeleteObject(pen);
+}
+
+void DrawButton_Rectangle(HDC hdc, RECT r) {
+	HPEN pen = CreatePen(PS_SOLID, 1, RGB(10, 10, 10));
+	SelectObject(hdc, pen);
+	HBRUSH br = CreateSolidBrush(RGB(180, 250, 224));
+	SelectObject(hdc, br);
+	Rectangle(hdc, 5, 10, 25, 20);
+	DeleteObject(pen);
+}
 
 void DrawPanel_ColorPen(HDC hdc, RECT r) {
 	HBRUSH br = CreateSolidBrush(penColor);
@@ -303,10 +316,39 @@ void CheckDrawing() {//проверяет, чтобы не прервать ри
 		delete currentFigure;
 		figureList->pop_back();
 		isDraw = false;
-		//currentFigureButton = nullptr;
-		figureFactory.ChooseNewFigure(nullptr);
+		currentFigureButton = nullptr;
 		InvalidateRect(hMainWindow, NULL, FALSE);
 	}
+}
+
+void ButtonClick_SetEllipse(Frame* btn) {
+	CheckDrawing();
+	currentFigureButton = &base_Ellipse;
+}
+
+void ButtonClick_SetCircle(Frame* btn) {
+	CheckDrawing();
+	currentFigureButton = &base_Circle;
+}
+
+void ButtonClick_SetPolygon(Frame* btn) {
+	CheckDrawing();
+	currentFigureButton = &base_Polygon;
+}
+
+void ButtonClick_SetRectangle(Frame* btn) {
+	CheckDrawing();
+	currentFigureButton = &base_Rectangle;
+}
+
+void ButtonClick_SetPolyline(Frame* btn) {
+	CheckDrawing();
+	currentFigureButton = &base_Polyline;
+}
+
+void ButtonClick_SetWavyline(Frame* btn) {
+	CheckDrawing();
+	currentFigureButton = &base_WavyLine;
 }
 
 void ButtonClick_Submit(Frame* btn) {
@@ -454,14 +496,53 @@ void InitWindow() {
 	////////////////////////////
 
 	//панель графических фигур
-	WindowClass* figPanel = figureFactory.DrawButtonPanel(170, 10, toolBar);
-	CustomPanel1(figPanel);
-	int deltaW = figureFactory.GetPanelWidth()+20;
+	WindowClass* figurePanel = new WindowClass(L"figPanel", Window::WindowType::PanelWindow, Position::absoluteAll, 170, 10, 130, 110, toolBar);
+	CustomPanel1(figurePanel);
 
+	Button* btnLine = new Button(Position::absoluteAll, 10, 10, 30, 30, figurePanel);
+	CustomButton1(btnLine);
+	btnLine->SetOwnerDraw(DrawButton_Line);
+	btnLine->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonClick_SetPolyline);
+	figurePanel->AddChild(btnLine);
+
+	Button* btnEllipse = new Button(Position::absoluteAll, 50, 10, 30, 30, figurePanel);
+	CustomButton1(btnEllipse);
+	btnEllipse->SetOwnerDraw(DrawButton_Ellipse);
+	btnEllipse->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonClick_SetEllipse);
+	figurePanel->AddChild(btnEllipse);
+
+	Button* btnCircle = new Button(Position::absoluteAll, 90, 10, 30, 30, figurePanel);
+	CustomButton1(btnCircle);
+	btnCircle->SetOwnerDraw(DrawButton_Circle);
+	btnCircle->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonClick_SetCircle);
+	figurePanel->AddChild(btnCircle);
+
+	Button* btnPolygon = new Button(Position::absoluteAll, 10, 50, 30, 30, figurePanel);
+	CustomButton1(btnPolygon);
+	btnPolygon->SetOwnerDraw(DrawButton_Polygon);
+	btnPolygon->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonClick_SetPolygon);
+	figurePanel->AddChild(btnPolygon);
+
+	Button* btnRectangle = new Button(Position::absoluteAll, 50, 50, 30, 30, figurePanel);
+	CustomButton1(btnRectangle);
+	btnRectangle->SetOwnerDraw(DrawButton_Rectangle);
+	btnRectangle->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonClick_SetRectangle);
+	figurePanel->AddChild(btnRectangle);
+
+	Button* btnWavyLine = new Button(Position::absoluteAll, 90, 50, 30, 30, figurePanel);
+	CustomButton1(btnWavyLine);
+	btnWavyLine->SetOwnerDraw(DrawButton_WavyLine);
+	btnWavyLine->eventHandler->SetMouseEvent(MouseEvents::OnClick, ButtonClick_SetWavyline);
+	figurePanel->AddChild(btnWavyLine);
+
+	LabelClass* lblFig = new LabelClass(L"Примитивы", Position::absolutePosH, 0, 80, 100, 20, figurePanel);
+	CustomLabel1(lblFig);
+	figurePanel->AddChild(lblFig);
+
+	toolBar->AddChild(figurePanel);
 	///////////////////////
 	//панель Выбора цвета
-	//WindowClass* colorPanel = new WindowClass(L"colorPanel", Window::WindowType::PanelWindow, Position::absoluteAll, 320, 10, 130, 110, toolBar);
-	WindowClass* colorPanel = new WindowClass(L"colorPanel", Window::WindowType::PanelWindow, Position::absoluteAll, 170+deltaW, 10, 130, 110, toolBar);
+	WindowClass* colorPanel = new WindowClass(L"colorPanel", Window::WindowType::PanelWindow, Position::absoluteAll, 320, 10, 130, 110, toolBar);
 	CustomPanel1(colorPanel);
 
 	WindowClass* pColorPen = new WindowClass(L"", Window::WindowType::PanelWindow, Position::absoluteAll, 10, 10, 50, 50, colorPanel);
@@ -492,8 +573,7 @@ void InitWindow() {
 	toolBar->AddChild(colorPanel);
 
 	//панель выбора стилей
-	//WindowClass* stylePanel = new WindowClass(L"stylePanel", Window::WindowType::PanelWindow, Position::absoluteAll, 470, 10, 370, 110, toolBar);
-	WindowClass* stylePanel = new WindowClass(L"stylePanel", Window::WindowType::PanelWindow, Position::absoluteAll, 320+deltaW, 10, 370, 110, toolBar);
+	WindowClass* stylePanel = new WindowClass(L"stylePanel", Window::WindowType::PanelWindow, Position::absoluteAll, 470, 10, 370, 110, toolBar);
 	CustomPanel1(stylePanel);
 
 	WindowClass* pPenWidth = new WindowClass(L"", Window::WindowType::PanelWindow, Position::absoluteAll, 10, 10, 110, 50, stylePanel);
@@ -722,10 +802,10 @@ LRESULT CALLBACK WndProcPaintBox(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 				break;
 			}
 		}
-		if (figureFactory.IsFigureChoosed() && !isDraw) {//начало рисования новой фигуры
+		if (currentFigureButton != nullptr && !isDraw) {//начало рисования новой фигуры
 			isModify = false;
 			SetModifyType(TypeOfTransformation::None);
-			currentFigure = figureFactory.CreateChoosedFigure();//создание новой фигуры
+			currentFigure = currentFigureButton->CreateFigureObject();
 			figureList->push_back(currentFigure);
 			//установить параметры рисования
 			currentFigure->painterTools->SetTools(penWidth, PenStyles[penStyle], penColor, BrushStyles[brushStyle], brushColor);
