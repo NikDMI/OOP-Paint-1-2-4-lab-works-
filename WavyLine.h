@@ -1,5 +1,5 @@
 #pragma once
-#include "..\..\LB1\WindowsProject1\Polyline.h"
+#include "Polyline.h"
 
 class WavyLine :public Polyline_Figure {
 public:
@@ -7,5 +7,6 @@ public:
 	int MouseUp(POINT p);// мыши по холсту
 	void MouseMove(POINT p);
 	Figure* CreateFigureObject();
+	virtual DrawBtnFunction GetBtnPainter();
 
 };
